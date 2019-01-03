@@ -1,2 +1,2 @@
 # iscience
-Java App for managing iScience Sample Apps
+Java App for managing iScience Students and Classes
