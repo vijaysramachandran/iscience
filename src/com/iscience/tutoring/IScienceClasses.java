@@ -1,4 +1,8 @@
-package com.iScienceCorp.tutoringSessions;
+package com.iscience.tutoring;
+
+import com.iscience.tutoring.model.Student;
+import com.iscience.tutoring.model.Tutor;
+import com.iscience.tutoring.model.TutoringSession;
 
 import java.util.Scanner;
 public class IScienceClasses {
