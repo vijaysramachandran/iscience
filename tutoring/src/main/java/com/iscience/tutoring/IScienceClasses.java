@@ -1,6 +1,10 @@
 package com.iscience.tutoring;
 
 import java.util.Scanner;
+
+import com.iscience.tutoring.model.Student;
+import com.iscience.tutoring.model.Tutor;
+import com.iscience.tutoring.model.TutoringSession;
 public class IScienceClasses {
 
 	public static void main(String[] args) {

@@ -1,7 +1,6 @@
 package com.iscience.tutoring.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TutoringSession {
 
@@ -46,11 +45,11 @@ public class TutoringSession {
 		this.tutor = tutor;
 	}
 
-	public ArrayList getStudents() {
+	public ArrayList<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(ArrayList students) {
+	public void setStudents(ArrayList<Student> students) {
 		this.students = students;
 	}
 
