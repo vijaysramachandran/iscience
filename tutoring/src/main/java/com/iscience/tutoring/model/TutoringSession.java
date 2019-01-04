@@ -4,69 +4,69 @@ import java.util.ArrayList;
 
 public class TutoringSession {
 
-	private Tutor tutor;
-	private ArrayList<Student> students = new ArrayList<>();
-	private String subject;
-	private String day;
-	private String time;
-	private int minutes;	
-	
-	public TutoringSession(String subject, String day, String time) {
-		this.subject = subject; 
-		this.day = day;
-		this.time = time;
-	}
-	
+    private Tutor tutor;
+    private ArrayList<Student> students = new ArrayList<>();
+    private String subject;
+    private String day;
+    private String time;
+    private int minutes;
 
-	@Override
-	public String toString() {
-		return "TutoringSession [tutor=" + tutor + ", students=" + students + ", subject=" + subject + ", day=" + day
-				+ ", time=" + time + ", minutes=" + minutes + "]";
-	}
+    public TutoringSession(String subject, String day, String time) {
+        this.subject = subject;
+        this.day = day;
+        this.time = time;
+    }
 
 
-	public String getSubject() {
-		return subject;
-	}
-	
-	public String getDay() {
-		return day;
-	}
-	
-	public String getTime() {
-		return time;
-	}
+    @Override
+    public String toString() {
+        return "TutoringSession [tutor=" + tutor + ", students=" + students + ", subject=" + subject + ", day=" + day
+                + ", time=" + time + ", minutes=" + minutes + "]";
+    }
 
-	public Tutor getTutor() {
-		return tutor;
-	}
 
-	public void setTutor(Tutor tutor) {
-		this.tutor = tutor;
-	}
+    public String getSubject() {
+        return subject;
+    }
 
-	public ArrayList<Student> getStudents() {
-		return students;
-	}
+    public String getDay() {
+        return day;
+    }
 
-	public void setStudents(ArrayList<Student> students) {
-		this.students = students;
-	}
+    public String getTime() {
+        return time;
+    }
 
-	public int getMinutes() {
-		return minutes;
-	}
+    public Tutor getTutor() {
+        return tutor;
+    }
 
-	public void setMinutes(int minutes) {
-		this.minutes = minutes;
-	}
-	
-	public void addStudent(Student student) {
-		students.add(student);
-	}
-	
-	public void removeStudent(Student student) {
-		students.remove(student);
-	}
-		
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
+    }
+
 }
