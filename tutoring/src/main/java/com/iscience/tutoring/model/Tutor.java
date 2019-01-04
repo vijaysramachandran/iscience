@@ -1,4 +1,4 @@
-package com.iScienceCorp.tutoringSessions;
+package com.iscience.tutoring.model;
 
 public class Tutor {
 
