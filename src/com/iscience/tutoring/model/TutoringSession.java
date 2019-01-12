@@ -1,4 +1,4 @@
-package com.iScienceCorp.tutoringSessions;
+package com.iscience.tutoring.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
