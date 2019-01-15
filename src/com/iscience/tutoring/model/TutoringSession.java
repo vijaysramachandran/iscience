@@ -1,7 +1,6 @@
 package com.iscience.tutoring.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TutoringSession {
 
@@ -10,7 +9,9 @@ public class TutoringSession {
 	private String subject;
 	private String day;
 	private String time;
-	private int minutes;	
+	private int sessionLength;	
+	
+	public TutoringSession() {}
 	
 	public TutoringSession(String subject, String day, String time) {
 		this.subject = subject; 
@@ -18,24 +19,28 @@ public class TutoringSession {
 		this.time = time;
 	}
 	
-
-	@Override
-	public String toString() {
-		return "TutoringSession [tutor=" + tutor + ", students=" + students + ", subject=" + subject + ", day=" + day
-				+ ", time=" + time + ", minutes=" + minutes + "]";
-	}
-
-
 	public String getSubject() {
 		return subject;
 	}
 	
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
 	public String getDay() {
 		return day;
 	}
 	
+	public void setDay(String day) {
+		this.day = day;
+	}
+
 	public String getTime() {
 		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 	public Tutor getTutor() {
@@ -46,6 +51,14 @@ public class TutoringSession {
 		this.tutor = tutor;
 	}
 
+	public int getSessionLength() {
+		return sessionLength;
+	}
+
+	public void setSessionLength(int sessionLength) {
+		this.sessionLength = sessionLength;
+	}
+
 	public ArrayList<Student> getStudents() {
 		return students;
 	}
@@ -54,14 +67,6 @@ public class TutoringSession {
 		this.students = students;
 	}
 
-	public int getMinutes() {
-		return minutes;
-	}
-
-	public void setMinutes(int minutes) {
-		this.minutes = minutes;
-	}
-	
 	public void addStudent(Student student) {
 		students.add(student);
 	}
@@ -69,5 +74,10 @@ public class TutoringSession {
 	public void removeStudent(Student student) {
 		students.remove(student);
 	}
-		
+	
+	@Override
+	public String toString() {
+		return "TutoringSession [tutor=" + tutor + ", students=" + students + ", subject=" + subject + ", day=" + day
+				+ ", time=" + time + ", session length=" + sessionLength + " minutes]";
+	}	
 }

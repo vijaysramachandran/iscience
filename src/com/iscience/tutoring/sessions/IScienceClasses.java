@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.iscience.tutoring.model.Student;
 import com.iscience.tutoring.model.Tutor;
 import com.iscience.tutoring.model.TutoringSession;
+
 public class IScienceClasses {
 
 	public static void main(String[] args) {
@@ -43,7 +44,7 @@ public class IScienceClasses {
 			
 			System.out.println("How many minutes will the tutoring session be?");
 			int minutes = in.nextInt();
-			tutoringSession1.setMinutes(minutes);
+			tutoringSession1.setSessionLength(minutes);
 			System.out.println(tutoringSession1.toString());
 			break;
 		
@@ -56,10 +57,6 @@ public class IScienceClasses {
 			System.out.println("What is the phone number of the student?");
 			String studentPhoneNumber = in.nextLine();
 			student1.setStudentPhoneNumber(studentPhoneNumber); //setting phone number for student
-			
-			System.out.println("What is the letter grade for the student?");
-			String letterGrade = in.nextLine();
-			student1.setLetterGrade(letterGrade); //setting letter grade for student
 			
 			System.out.println("What grade is the student in?");
 			int grade = in.nextInt();

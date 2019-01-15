@@ -2,14 +2,27 @@ package com.iscience.tutoring.model;
 
 public class Student {
 
-	private String student;
-	private String StudentPhoneNumber;
-	private String letterGrade;
+	private String studentName;
+	private String studentPhoneNumber;
+	private String courseGrade;
 	private int grade;
 	private String parentName;
 	private String parentPhoneNumber;
 	private String schoolName;
+
+	public Student() {}
 	
+	public Student(String student) {
+		this.studentName = student;	
+	}
+
+	public String getStudentName() {
+		return this.studentName;
+	}
+	public void setStudentName(String student) {
+		this.studentName = student;
+	}
+
 	public String getSchoolName() {
 		return schoolName;
 	}
@@ -17,44 +30,21 @@ public class Student {
 	public void setSchoolName(String schoolName) {
 		this.schoolName = schoolName;
 	}
-
-	public Student(String student) {
-		this.student = student;	
-	}
 	
-	public String getStudentName() {
-		return student;
-	}
-
-	public String getStudent() {
-		return student;
-	}
-
-	@Override
-	public String toString() {
-		return "Student [student=" + student + ", StudentPhoneNumber=" + StudentPhoneNumber + ", letterGrade="
-				+ letterGrade + ", grade=" + grade + ", parentName=" + parentName + ", parentPhoneNumber="
-				+ parentPhoneNumber + ", schoolName=" + schoolName + "]";
-	}
-
-	public void setStudent(String student) {
-		this.student = student;
-	}
-
 	public String getStudentPhoneNumber() {
-		return StudentPhoneNumber;
+		return studentPhoneNumber;
 	}
 
 	public void setStudentPhoneNumber(String studentPhoneNumber) {
-		StudentPhoneNumber = studentPhoneNumber;
+		this.studentPhoneNumber = studentPhoneNumber;
 	}
 
-	public String getLetterGrade() {
-		return letterGrade;
+	public String getCourseGrade() {
+		return courseGrade;
 	}
 
-	public void setLetterGrade(String letterGrade) {
-		this.letterGrade = letterGrade;
+	public void setCourseGrade(String letterGrade) {
+		this.courseGrade = letterGrade;
 	}
 
 	public int getGrade() {
@@ -81,6 +71,10 @@ public class Student {
 		this.parentPhoneNumber = parentPhoneNumber;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Student [student=" + studentName + ", StudentPhoneNumber=" + studentPhoneNumber + ", courseGrade="
+				+ courseGrade + ", grade=" + grade + ", parentName=" + parentName + ", parentPhoneNumber="
+				+ parentPhoneNumber + ", schoolName=" + schoolName + "]";
+	}	
 }

@@ -1,16 +1,12 @@
 package com.iscience.tutoring.store;
 
-import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import static com.mongodb.client.model.Filters.*;
-import static com.mongodb.client.model.Updates.*;
-import static java.util.Arrays.asList;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 import com.iscience.tutoring.model.Tutor;
-import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
