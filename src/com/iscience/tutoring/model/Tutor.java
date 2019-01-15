@@ -2,27 +2,33 @@ package com.iscience.tutoring.model;
 
 public class Tutor {
 
-	private String tutor;
+	private String tutorName;
 	private String phoneNumber;
 	
+	public Tutor() {}
+	
 	public Tutor(String tutor) {
-		this.tutor = tutor;
+		this.tutorName = tutor;
+	}
+	
+	public void setTutorName(String name) {
+		this.tutorName = name;
 	}
 	
 	public String getTutorName() {
-		return tutor;
+		return tutorName;
 	}
 	
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	@Override
-	public String toString() {
-		return "Tutor [tutor=" + tutor + ", phoneNumber=" + phoneNumber + "]";
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+	
+	@Override
+	public String toString() {
+		return "Tutor [tutor=" + tutorName + ", phoneNumber=" + phoneNumber + "]";
 	}
 }
