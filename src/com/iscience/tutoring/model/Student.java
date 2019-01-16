@@ -10,15 +10,17 @@ public class Student {
 	private String parentPhoneNumber;
 	private String schoolName;
 
-	public Student() {}
-	
+	public Student() {
+	}
+
 	public Student(String student) {
-		this.studentName = student;	
+		this.studentName = student;
 	}
 
 	public String getStudentName() {
 		return this.studentName;
 	}
+
 	public void setStudentName(String student) {
 		this.studentName = student;
 	}
@@ -30,7 +32,7 @@ public class Student {
 	public void setSchoolName(String schoolName) {
 		this.schoolName = schoolName;
 	}
-	
+
 	public String getStudentPhoneNumber() {
 		return studentPhoneNumber;
 	}
@@ -70,11 +72,11 @@ public class Student {
 	public void setParentPhoneNumber(String parentPhoneNumber) {
 		this.parentPhoneNumber = parentPhoneNumber;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Student [student=" + studentName + ", StudentPhoneNumber=" + studentPhoneNumber + ", courseGrade="
 				+ courseGrade + ", grade=" + grade + ", parentName=" + parentName + ", parentPhoneNumber="
 				+ parentPhoneNumber + ", schoolName=" + schoolName + "]";
-	}	
+	}
 }

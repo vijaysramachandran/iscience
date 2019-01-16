@@ -1,44 +1,56 @@
 package com.iscience.tutoring.store;
 
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 import static com.mongodb.client.model.Filters.*;
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
 import com.iscience.tutoring.model.Tutor;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 
 public class TutorStore extends MongoStore {
-	
+
+	private MongoCollection<Tutor> tutorsCollection;
+
+	public TutorStore() {
+		super();
+		tutorsCollection = dbClient.getDatabase("iscience").getCollection("tutors", Tutor.class);
+	}
+
 	public boolean createTutor(Tutor newTutor) {
-		if(findTutor(newTutor.getTutorName()) != null) {
-			System.out.println("Tutor " + newTutor.getTutorName() + " is already present. Please use update Tutor option.");
+		if (findTutor(newTutor.getTutorName()) != null) {
+			System.out.println(
+					"Tutor " + newTutor.getTutorName() + " is already present. Please use update Tutor option.");
 			return false;
 		}
-		tutorsCollection.insertOne(newTutor);		
+		tutorsCollection.insertOne(newTutor);
 		return true;
 	}
-	
+
 	public Tutor findTutor(String fullName) {
 		return tutorsCollection.find(eq("tutorName", fullName)).first();
 	}
-	
+
 	public void updateTutor(Tutor updated) {
 		tutorsCollection.findOneAndReplace(eq("tutorName", updated.getTutorName()), updated);
 	}
-	
+
 	public boolean deleteTutor(String fullName) {
-		if(findTutor(fullName) == null) {
+		if (findTutor(fullName) == null) {
 			System.out.println("Tutor " + fullName + " is not present. Nothing to delete");
 			return false;
 		}
 		tutorsCollection.findOneAndDelete(eq("tutorName", fullName));
 		return true;
 	}
-	
+
+	public boolean updateTutorPhoneNumber(String tutorName, String newNumber) {
+		Tutor current = findTutor(tutorName);
+		if (current == null) {
+			System.out.println("Tutor " + tutorName + " is not present. Nothing to update");
+			return false;
+		}
+		current.setPhoneNumber(newNumber);
+		updateTutor(current);
+		return true;
+	}
+
 	public static void main(String[] args) {
 		TutorStore store = new TutorStore();
 		Tutor aparna = new Tutor("Aparna Lanka");

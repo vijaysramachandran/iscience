@@ -9,20 +9,21 @@ public class TutoringSession {
 	private String subject;
 	private String day;
 	private String time;
-	private int sessionLength;	
-	
-	public TutoringSession() {}
-	
+	private int sessionLength;
+
+	public TutoringSession() {
+	}
+
 	public TutoringSession(String subject, String day, String time) {
-		this.subject = subject; 
+		this.subject = subject;
 		this.day = day;
 		this.time = time;
 	}
-	
+
 	public String getSubject() {
 		return subject;
 	}
-	
+
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
@@ -30,7 +31,7 @@ public class TutoringSession {
 	public String getDay() {
 		return day;
 	}
-	
+
 	public void setDay(String day) {
 		this.day = day;
 	}
@@ -70,14 +71,14 @@ public class TutoringSession {
 	public void addStudent(Student student) {
 		students.add(student);
 	}
-	
+
 	public void removeStudent(Student student) {
 		students.remove(student);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "TutoringSession [tutor=" + tutor + ", students=" + students + ", subject=" + subject + ", day=" + day
 				+ ", time=" + time + ", session length=" + sessionLength + " minutes]";
-	}	
+	}
 }
