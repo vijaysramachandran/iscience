@@ -11,22 +11,13 @@ public class IScienceClasses {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 
-		System.out.println("What do you want to do?\n1. Create tutor\n2. Create Session\n3. Create Student\n4. Quit");
+		System.out.println("What do you want to do?\n1. Change tutor information\n2. Change Session Information\n3. Change student information\n4. Quit");
 		int choice = in.nextInt();
 
 		switch (choice) {
 		case 1:
-			System.out.println("What is the name of the tutor?");
-			in.nextLine();
-			String name = in.nextLine();
-			Tutor tutor1 = new Tutor(name); // Creates new tutor
-
-			System.out.println("What is the phone number of the tutor?");
-			String phoneNumber = in.nextLine();
-
-			tutor1.setPhoneNumber(phoneNumber); // creating phone number for tutor
-			System.out.println();
-			System.out.println(tutor1.toString());
+			TutorOperations ops = new TutorOperations();
+			ops.displayChoices();
 			break;
 
 		case 2:
@@ -88,5 +79,6 @@ public class IScienceClasses {
 		}
 
 		in.close();
+		
 	}
 }
