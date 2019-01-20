@@ -3,11 +3,13 @@ package com.iscience.tutoring.sessions;
 import java.util.Scanner;
 
 import com.iscience.tutoring.model.Student;
+import com.iscience.tutoring.store.StudentStore;
 public class StudentOperations 
 {
 	public void displayChoices()
 	{
 		Scanner out = new Scanner(System.in);
+		StudentStore store = new StudentStore();
 		boolean trueOrFalse = true;
 		
 		do
@@ -44,26 +46,39 @@ public class StudentOperations
 				String courseGrade = out.nextLine();
 				out.nextLine();
 				s1.setCourseGrade(courseGrade);
+				store.createStudent(s1);
 				break;
 			case 2:
 				System.out.println("which student has a new phone number?");
 				out.nextLine();
 				String student = out.nextLine();
+				System.out.println("What is their new phone number?");
+				String newPhoneNumber = out.nextLine();
+				store.updateStudentPhoneNumber(student, newPhoneNumber);
 				break;
 			case 3:
-				System.out.println("Which student's parent has a new phoneNumber?");
+				System.out.println("Which student's parent has a new phone number?");
 				out.nextLine();
 				String studentAgain = out.nextLine();
+				System.out.println("What is the parent's new phone number?");
+				String newParentPhoneNumber = out.nextLine();
+				store.updateParentPhoneNumber(studentAgain, newParentPhoneNumber);
 				break;
 			case 4:
 				System.out.println("Whose letter grade has changed?");
 				out.nextLine();
 				String studentAgainAgain = out.nextLine();
+				System.out.println("what is their new letter grade?");
+				String newCourseGrade = out.nextLine();
+				store.updateStudentCourseGrade(studentAgainAgain, newCourseGrade);
 				break;
 			case 5:
 				System.out.println("Who is older?");
 				out.nextLine();
 				String studentAgainAgainAgain = out.nextLine();
+				System.out.println("What grade is this student in right now?");
+				int newAcademicGrade = out.nextInt();
+				store.updateStudentGrade(studentAgainAgainAgain, newAcademicGrade);
 				break;
 			case 6:
 				trueOrFalse = false;
@@ -74,5 +89,6 @@ public class StudentOperations
 			}
 		}
 		while(trueOrFalse);
+		out.close();
 	}
 }
