@@ -17,6 +17,7 @@ public class TutorOperations {
 			
 				case 1: 
 					System.out.println("What is the name of the tutor?");
+					in.nextLine();
 					String name = in.nextLine();
 					
 					Tutor t1 = new Tutor(name);
@@ -29,12 +30,14 @@ public class TutorOperations {
 				
 				case 2:	
 					System.out.println("Whose phone number do you want to change? Tutor name please.");
+					in.nextLine();
 					String tutor = in.nextLine();
 					trueOrFalse = true;
 					break;
 					
 				case 3:
 					System.out.println("Who got fired?");
+					in.nextLine();
 					String firedTutor = in.nextLine();
 					trueOrFalse = true;
 					break; 
