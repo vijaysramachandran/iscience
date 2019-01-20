@@ -2,10 +2,12 @@ package com.iscience.tutoring.sessions;
 
 import java.util.Scanner;
 import com.iscience.tutoring.model.Tutor;
+import com.iscience.tutoring.store.TutorStore;
 
 public class TutorOperations {
 
 	public void displayChoices() {
+		TutorStore store = new TutorStore();
 		Scanner in = new Scanner(System.in);
 		boolean trueOrFalse = true;
 	
@@ -25,18 +27,25 @@ public class TutorOperations {
 					System.out.println("What is the phone number of the tutor?");
 					String phoneNumber = in.nextLine();
 					t1.setPhoneNumber(phoneNumber);
+					
+					store.createTutor(t1);
+					
 					break;
 				
 				case 2:	
 					System.out.println("Whose phone number do you want to change? Tutor name please.");
 					in.nextLine();
-					String tutor = in.nextLine();
+					String tutorName = in.nextLine();
+					System.out.println("What is the new phone number:");
+					String newPhoneNumber = in.nextLine();
+					store.updateTutorPhoneNumber(tutorName, newPhoneNumber);
 					break;
 					
 				case 3:
 					System.out.println("Who got fired?");
 					in.nextLine();
 					String firedTutor = in.nextLine();
+					store.deleteTutor(firedTutor);
 					break; 
 				
 				case 4:
