@@ -4,45 +4,44 @@ import java.util.Scanner;
 
 import com.iscience.tutoring.model.Student;
 import com.iscience.tutoring.store.StudentStore;
-public class StudentOperations 
-{
-	public void displayChoices()
-	{
+
+public class StudentOperations {
+	public void displayChoices() {
 		Scanner out = new Scanner(System.in);
 		StudentStore store = new StudentStore();
 		boolean trueOrFalse = true;
-		
-		do
-		{
-			System.out.println("What would you like to do?\n1. Create Student\n2. Update Student Phone Number\n3. Update Parent Phone Number\n4.Update Student Course Grade\n5. Update Student Academic Grade\n6. Go Back");
+
+		do {
+			System.out.println(
+					"What would you like to do?\n1. Create Student\n2. Update Student Phone Number\n3. Update Parent Phone Number\n4.Update Student Course Grade\n5. Update Student Academic Grade\n6. Remove Student\n7. Go Back");
 			int choice = out.nextInt();
-			
-			switch(choice)
-			{
+
+			switch (choice) {
 			case 1:
 				System.out.println("What is the name of the student?");
 				out.nextLine();
 				String name = out.nextLine();
-				
+
 				Student s1 = new Student(name);
-				
+
 				System.out.println("What is the student's phone number?");
 				String phoneNumber = out.nextLine();
 				s1.setStudentPhoneNumber(phoneNumber);
-				
+
 				System.out.println("What is the name of the parent?");
 				String parentName = out.nextLine();
 				s1.setParentName(parentName);
-				
+
 				System.out.println("What is the parent's phoneNumber?");
 				String parentPhoneNumber = out.nextLine();
 				s1.setParentPhoneNumber(parentPhoneNumber);
-				
+
 				System.out.println("What is the student's current Academic Grade?");
 				int academicGrade = out.nextInt();
 				s1.setGrade(academicGrade);
-				
-				System.out.println("What is the student's current letter grade in the subject that he/she needs help in?");
+
+				System.out.println(
+						"What is the student's current letter grade in the subject that he/she needs help in?");
 				String courseGrade = out.nextLine();
 				out.nextLine();
 				s1.setCourseGrade(courseGrade);
@@ -81,14 +80,18 @@ public class StudentOperations
 				store.updateStudentGrade(studentAgainAgainAgain, newAcademicGrade);
 				break;
 			case 6:
+				System.out.println("Which student do you want to remove?");
+				out.nextLine();
+				store.deleteStudent(out.nextLine());
+				break;
+			case 7:
 				trueOrFalse = false;
 				return;
 			default:
 				System.out.println("Invalid entry, please sumbit using the number next to your choice?");
 				break;
 			}
-		}
-		while(trueOrFalse);
+		} while (trueOrFalse);
 		out.close();
 	}
 }

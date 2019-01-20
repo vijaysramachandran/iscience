@@ -1,6 +1,7 @@
 package com.iscience.tutoring.store;
 
-import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.eq;
+
 import com.iscience.tutoring.model.Student;
 import com.mongodb.client.MongoCollection;
 
@@ -24,11 +25,11 @@ public class StudentStore extends MongoStore {
 	}
 
 	public Student findStudent(String fullName) {
-		return studentsCollection.find(eq("StudentName", fullName)).first();
+		return studentsCollection.find(eq("studentName", fullName)).first();
 	}
 
 	public void updateStudent(Student updated) {
-		studentsCollection.findOneAndReplace(eq("StudentName", updated.getStudentName()), updated);
+		studentsCollection.findOneAndReplace(eq("studentName", updated.getStudentName()), updated);
 	}
 
 	public boolean deleteStudent(String fullName) {
@@ -36,7 +37,7 @@ public class StudentStore extends MongoStore {
 			System.out.println("Student " + fullName + " is not present. Nothing to delete");
 			return false;
 		}
-		studentsCollection.findOneAndDelete(eq("StudentName", fullName));
+		studentsCollection.findOneAndDelete(eq("studentName", fullName));
 		return true;
 	}
 

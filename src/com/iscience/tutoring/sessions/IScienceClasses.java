@@ -4,17 +4,15 @@ import java.util.Scanner;
 
 public class IScienceClasses {
 
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		boolean trueOrFalse = true;
-		do
-		{
-			System.out.println("What do you want to do?\n1. Change tutor information\n2. Change Session Information\n3. Change student information\n4. Quit");
+		do {
+			System.out.println(
+					"What do you want to do?\n1. Change tutor information\n2. Change Session Information\n3. Change student information\n4. Quit");
 			int choice = in.nextInt();
 
-			switch (choice) 
-			{
+			switch (choice) {
 			case 1:
 				TutorOperations ops = new TutorOperations();
 				ops.displayChoices();
@@ -29,7 +27,7 @@ public class IScienceClasses {
 				StudentOperations ops2 = new StudentOperations();
 				ops2.displayChoices();
 				break;
-				
+
 			case 4:
 				trueOrFalse = false;
 				break; // quitting
@@ -38,7 +36,7 @@ public class IScienceClasses {
 				System.out.println("Invalid answer. Please enter 1, 2, 3, or 4.");
 				break;
 			}
-		}while(trueOrFalse);
+		} while (trueOrFalse);
 
 		in.close();
 	}

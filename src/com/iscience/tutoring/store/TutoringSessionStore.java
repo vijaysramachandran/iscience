@@ -1,6 +1,8 @@
 package com.iscience.tutoring.store;
 
-import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+
 import com.iscience.tutoring.model.TutoringSession;
 import com.mongodb.client.MongoCollection;
 
