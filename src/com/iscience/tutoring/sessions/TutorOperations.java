@@ -7,7 +7,7 @@ public class TutorOperations {
 
 	public void displayChoices() {
 		Scanner in = new Scanner(System.in);
-		boolean trueOrFalse;
+		boolean trueOrFalse = true;
 	
 		do {
 			System.out.println("What would you like to do?\n1. Create Tutor\n2. Update Tutor Phone Number\n3. Delete Tutor\n4. Go Back");
@@ -25,21 +25,18 @@ public class TutorOperations {
 					System.out.println("What is the phone number of the tutor?");
 					String phoneNumber = in.nextLine();
 					t1.setPhoneNumber(phoneNumber);
-					trueOrFalse = true;
 					break;
 				
 				case 2:	
 					System.out.println("Whose phone number do you want to change? Tutor name please.");
 					in.nextLine();
 					String tutor = in.nextLine();
-					trueOrFalse = true;
 					break;
 					
 				case 3:
 					System.out.println("Who got fired?");
 					in.nextLine();
 					String firedTutor = in.nextLine();
-					trueOrFalse = true;
 					break; 
 				
 				case 4:
@@ -47,7 +44,6 @@ public class TutorOperations {
 					return;
 				
 				default:
-					trueOrFalse = true;
 					System.out.println("invalid answer");
 			}
 
