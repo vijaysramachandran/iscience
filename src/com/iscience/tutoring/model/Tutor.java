@@ -9,11 +9,11 @@ public class Tutor {
 	}
 
 	public Tutor(String tutor) {
-		this.tutorName = tutor;
+		this.tutorName = tutor.toUpperCase();
 	}
 
 	public void setTutorName(String name) {
-		this.tutorName = name;
+		this.tutorName = name.toUpperCase();
 	}
 
 	public String getTutorName() {

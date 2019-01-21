@@ -1,25 +1,33 @@
 package com.iscience.tutoring.sessions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import com.iscience.tutoring.model.Student;
 import com.iscience.tutoring.model.Tutor;
 import com.iscience.tutoring.model.TutoringSession;
 import com.iscience.tutoring.store.StudentStore;
 import com.iscience.tutoring.store.TutorStore;
 import com.iscience.tutoring.store.TutoringSessionStore;
+import com.mongodb.client.FindIterable;
 
 public class SessionOperations {
 
+	private TutoringSessionStore sessionStore = new TutoringSessionStore();
+	private TutorStore tutorStore = new TutorStore();
+	private StudentStore studentStore = new StudentStore();
+
 	public void displayChoices() {
 		Scanner in = new Scanner(System.in);
-		TutoringSessionStore sessionStore = new TutoringSessionStore();
-		TutorStore tutorStore = new TutorStore();
-		StudentStore studentStore = new StudentStore();
 		boolean trueOrFalse = true;
+		Tutor tutor;
+		TutoringSession session;
+		Student student;
 
 		do {
 			System.out.println(
-					"What would you like to do?\n1. Create Session\n2. Assign tutor to session\n3. Add student to session\n4. Remove student from session\n5. Delete session\n6. Quit");
+					"What would you like to do?\n1. Create Session\n2. Assign tutor to session\n3. Add student to session\n4. Remove student from session\n5. Delete session\n6. Go Back");
 			int choice = in.nextInt();
 
 			switch (choice) {
@@ -35,10 +43,10 @@ public class SessionOperations {
 				System.out.println("At what time is the lesson?");
 				String time = in.nextLine();
 
-				TutoringSession session = new TutoringSession(subject, day, time);
+				session = new TutoringSession(subject, day, time);
 
 				System.out.println("Who is the tutor?");
-				Tutor tutor = tutorStore.findTutor(in.nextLine());
+				tutor = tutorStore.findTutor(in.nextLine());
 				if (tutor == null) {
 					System.out.println("Tutor not found.");
 					break;
@@ -47,36 +55,63 @@ public class SessionOperations {
 				System.out.println("How long is the session (in minutes)?");
 				session.setSessionLength(in.nextInt());
 
+				System.out.println("What is the cost per student for this session?");
+				in.nextLine();
+				session.setPrice(in.nextLine());
+				
 				sessionStore.createTutoringSession(session);
 				break;
 
 			case 2:
-				System.out.println("Which session should the tutor be assigned to?");
+				System.out.println("Which tutor should be assigned to a session?");
 				in.nextLine();
-				// need input
-				System.out.println("Which tutor should be assigned to the session?");
-				String tutorName = in.nextLine();
+				tutor = tutorStore.findTutor(in.nextLine());
+				if(tutor == null) {
+					System.out.println("Tutor not found.");
+					break;
+				}
+				System.out.println("Which session should the tutor be assigned to?");
+				session = getSession(in);
+				session.setTutor(tutor);
+				sessionStore.updateTutoringSession(session);
 				break;
 
 			case 3:
-				System.out.println("Which session should the student be assigned to?");
+				System.out.println("Which student should be assigned to a session?");
 				in.nextLine();
-				// need input
-				System.out.println("Which student should be assigned to the session?");
-				String student = in.nextLine();
+				student = studentStore.findStudent(in.nextLine());
+				if(student == null) {
+					System.out.println("Student not found.");
+					break;
+				}
+				System.out.println("Which session should the student be assigned to?");
+				session = getSession(in);
+				session.addStudent(student);
+				sessionStore.updateTutoringSession(session);
 				break;
 
 			case 4:
-				System.out.println("Which student has to be removed?");
+				System.out.println("Which student should be removed from a session?");
 				in.nextLine();
-				String student1 = in.nextLine();
-				// session.removeStudent("student")
+				student = studentStore.findStudent(in.nextLine());
+				if(student == null) {
+					System.out.println("Student not found.");
+					break;
+				}
+				System.out.println("Which session should the student be assigned to?");
+				session = getSession(in);
+				session.getStudents().remove(student);
+				sessionStore.updateTutoringSession(session);
 				break;
+				
 			case 5:
-				System.out.println("Which session has to be deleted?");
-				in.nextLine();
-				// need input
+				session = getSession(in);
+				sessionStore.deleteTutoringSession(
+						session.getSubject(),
+						session.getDay(),
+						session.getTime());
 				break;
+				
 			case 6:
 				trueOrFalse = false;
 				return;
@@ -86,5 +121,28 @@ public class SessionOperations {
 
 			}
 		} while (trueOrFalse);
+		in.close();
+	}
+	
+	private TutoringSession getSession(Scanner in) {
+		List<TutoringSession> list = new ArrayList<>();
+		FindIterable<TutoringSession> completeList = sessionStore.getAllTutoringSessions();
+		int index = 0;
+		for(TutoringSession aSession : completeList) {
+			list.add(aSession);
+			System.out.println((index+1) + ". " + aSession.getSubject() + "-" + aSession.getDay() + "-" + aSession.getTime());
+			index++;
+		}
+		boolean keepLooping = true;
+		do {
+			System.out.println("Which session ?");
+			index = in.nextInt();
+			if((index < 1) || (index > list.size())) {
+				System.out.println("Wrong choice. Valid choice 1 to " + list.size());
+			} else {
+				keepLooping = false;
+			}
+		} while(keepLooping);
+		return list.get(index-1);
 	}
 }

@@ -14,7 +14,7 @@ public class Student {
 	}
 
 	public Student(String student) {
-		this.studentName = student;
+		this.studentName = student.toUpperCase();
 	}
 
 	public String getStudentName() {
@@ -22,7 +22,7 @@ public class Student {
 	}
 
 	public void setStudentName(String student) {
-		this.studentName = student;
+		this.studentName = student.toUpperCase();
 	}
 
 	public String getSchoolName() {
@@ -71,6 +71,23 @@ public class Student {
 
 	public void setParentPhoneNumber(String parentPhoneNumber) {
 		this.parentPhoneNumber = parentPhoneNumber;
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object that) {
+		if(!(that instanceof Student)) {
+			return false;
+		}
+		Student thatObj = (Student) that;
+		if(!this.getStudentName().equalsIgnoreCase(thatObj.getStudentName().toUpperCase())) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override

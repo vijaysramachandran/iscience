@@ -10,14 +10,15 @@ public class TutoringSession {
 	private String day;
 	private String time;
 	private int sessionLength;
+	private String price;
 
 	public TutoringSession() {
 	}
 
 	public TutoringSession(String subject, String day, String time) {
-		this.subject = subject;
-		this.day = day;
-		this.time = time;
+		this.subject = subject.toUpperCase();
+		this.day = day.toUpperCase();
+		this.time = time.toUpperCase();
 	}
 
 	public String getSubject() {
@@ -25,7 +26,7 @@ public class TutoringSession {
 	}
 
 	public void setSubject(String subject) {
-		this.subject = subject;
+		this.subject = subject.toUpperCase();
 	}
 
 	public String getDay() {
@@ -33,7 +34,7 @@ public class TutoringSession {
 	}
 
 	public void setDay(String day) {
-		this.day = day;
+		this.day = day.toUpperCase();
 	}
 
 	public String getTime() {
@@ -41,7 +42,7 @@ public class TutoringSession {
 	}
 
 	public void setTime(String time) {
-		this.time = time;
+		this.time = time.toUpperCase();
 	}
 
 	public Tutor getTutor() {
@@ -76,9 +77,18 @@ public class TutoringSession {
 		students.remove(student);
 	}
 
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		return "TutoringSession [tutor=" + tutor + ", students=" + students + ", subject=" + subject + ", day=" + day
-				+ ", time=" + time + ", session length=" + sessionLength + " minutes]";
+				+ ", time=" + time + ", sessionLength=" + sessionLength + ", price=" + price + "]";
 	}
+
 }

@@ -4,6 +4,7 @@ import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 
 import com.iscience.tutoring.model.TutoringSession;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
 public class TutoringSessionStore extends MongoStore {
@@ -27,7 +28,14 @@ public class TutoringSessionStore extends MongoStore {
 	}
 
 	public TutoringSession findTutoringSession(String subject, String day, String time) {
-		return tutoringSessionsCollection.find(and(eq("subject", subject), eq("day", day), eq("time", time))).first();
+		return tutoringSessionsCollection.find(
+				and(eq("subject", subject.toUpperCase()), 
+						eq("day", day.toUpperCase()), eq("time", time.toUpperCase())))
+				.first();
+	}
+	
+	public FindIterable<TutoringSession> getAllTutoringSessions() {
+		return tutoringSessionsCollection.find();
 	}
 
 	public void updateTutoringSession(TutoringSession updated) {
@@ -41,7 +49,9 @@ public class TutoringSessionStore extends MongoStore {
 			System.out.println("Session " + subject + "-" + day + "-" + time + " is not present. Nothing to delete");
 			return false;
 		}
-		tutoringSessionsCollection.findOneAndDelete(and(eq("subject", subject), eq("day", day), eq("time", time)));
+		tutoringSessionsCollection.findOneAndDelete(
+				and(eq("subject", subject.toUpperCase()), 
+						eq("day", day.toUpperCase()), eq("time", time.toUpperCase())));
 		return true;
 	}
 }

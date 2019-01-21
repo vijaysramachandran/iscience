@@ -25,7 +25,7 @@ public class TutorStore extends MongoStore {
 	}
 
 	public Tutor findTutor(String fullName) {
-		return tutorsCollection.find(eq("tutorName", fullName)).first();
+		return tutorsCollection.find(eq("tutorName", fullName.toUpperCase())).first();
 	}
 
 	public void updateTutor(Tutor updated) {
@@ -37,7 +37,7 @@ public class TutorStore extends MongoStore {
 			System.out.println("Tutor " + fullName + " is not present. Nothing to delete");
 			return false;
 		}
-		tutorsCollection.findOneAndDelete(eq("tutorName", fullName));
+		tutorsCollection.findOneAndDelete(eq("tutorName", fullName.toUpperCase()));
 		return true;
 	}
 
