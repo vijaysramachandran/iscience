@@ -29,11 +29,10 @@ public class TutoringSessionStore extends MongoStore {
 
 	public TutoringSession findTutoringSession(String subject, String day, String time) {
 		return tutoringSessionsCollection.find(
-				and(eq("subject", subject.toUpperCase()), 
-						eq("day", day.toUpperCase()), eq("time", time.toUpperCase())))
+				and(eq("subject", subject.toUpperCase()), eq("day", day.toUpperCase()), eq("time", time.toUpperCase())))
 				.first();
 	}
-	
+
 	public FindIterable<TutoringSession> getAllTutoringSessions() {
 		return tutoringSessionsCollection.find();
 	}
@@ -49,9 +48,8 @@ public class TutoringSessionStore extends MongoStore {
 			System.out.println("Session " + subject + "-" + day + "-" + time + " is not present. Nothing to delete");
 			return false;
 		}
-		tutoringSessionsCollection.findOneAndDelete(
-				and(eq("subject", subject.toUpperCase()), 
-						eq("day", day.toUpperCase()), eq("time", time.toUpperCase())));
+		tutoringSessionsCollection.findOneAndDelete(and(eq("subject", subject.toUpperCase()),
+				eq("day", day.toUpperCase()), eq("time", time.toUpperCase())));
 		return true;
 	}
 }

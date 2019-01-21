@@ -60,9 +60,9 @@ public class SessionOperations {
 				System.out.println("What is the cost per student for this session?");
 				in.nextLine();
 				session.setPrice(in.nextLine());
-				
+
 				sessionStore.createTutoringSession(session);
-				
+
 				System.out.println("Session Created Successfully.");
 				break;
 
@@ -70,7 +70,7 @@ public class SessionOperations {
 				System.out.println("Which tutor should be assigned to a session?");
 				in.nextLine();
 				tutor = tutorStore.findTutor(in.nextLine());
-				if(tutor == null) {
+				if (tutor == null) {
 					System.out.println("Tutor not found.");
 					break;
 				}
@@ -85,7 +85,7 @@ public class SessionOperations {
 				System.out.println("Which student should be assigned to a session?");
 				in.nextLine();
 				student = studentStore.findStudent(in.nextLine());
-				if(student == null) {
+				if (student == null) {
 					System.out.println("Student not found.");
 					break;
 				}
@@ -100,7 +100,7 @@ public class SessionOperations {
 				System.out.println("Which student should be removed from a session?");
 				in.nextLine();
 				student = studentStore.findStudent(in.nextLine());
-				if(student == null) {
+				if (student == null) {
 					System.out.println("Student not found.");
 					break;
 				}
@@ -110,16 +110,13 @@ public class SessionOperations {
 				sessionStore.updateTutoringSession(session);
 				System.out.println("Session updated Successfully.");
 				break;
-				
+
 			case 5:
 				session = getSession(in);
-				sessionStore.deleteTutoringSession(
-						session.getSubject(),
-						session.getDay(),
-						session.getTime());
+				sessionStore.deleteTutoringSession(session.getSubject(), session.getDay(), session.getTime());
 				System.out.println("Session removed Successfully.");
 				break;
-				
+
 			case 6:
 				trueOrFalse = false;
 				return;
@@ -137,26 +134,27 @@ public class SessionOperations {
 		} while (trueOrFalse);
 		in.close();
 	}
-	
+
 	private TutoringSession getSession(Scanner in) {
 		List<TutoringSession> list = new ArrayList<>();
 		FindIterable<TutoringSession> completeList = sessionStore.getAllTutoringSessions();
 		int index = 0;
-		for(TutoringSession aSession : completeList) {
+		for (TutoringSession aSession : completeList) {
 			list.add(aSession);
-			System.out.println((index+1) + ". " + aSession.getSubject() + "-" + aSession.getDay() + "-" + aSession.getTime());
+			System.out.println(
+					(index + 1) + ". " + aSession.getSubject() + "-" + aSession.getDay() + "-" + aSession.getTime());
 			index++;
 		}
 		boolean keepLooping = true;
 		do {
 			System.out.println("Which session ?");
 			index = in.nextInt();
-			if((index < 1) || (index > list.size())) {
+			if ((index < 1) || (index > list.size())) {
 				System.out.println("Wrong choice. Valid choice 1 to " + list.size());
 			} else {
 				keepLooping = false;
 			}
-		} while(keepLooping);
-		return list.get(index-1);
+		} while (keepLooping);
+		return list.get(index - 1);
 	}
 }

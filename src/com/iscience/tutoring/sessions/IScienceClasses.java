@@ -1,6 +1,5 @@
 package com.iscience.tutoring.sessions;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class IScienceClasses {
