@@ -1,5 +1,6 @@
 package com.iscience.tutoring.sessions;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.iscience.tutoring.model.Tutor;
@@ -7,12 +8,13 @@ import com.iscience.tutoring.store.TutorStore;
 
 public class TutorOperations {
 
-	public void displayChoices() {
+	public void displayChoices() throws InterruptedException, IOException {
 		TutorStore store = new TutorStore();
 		Scanner in = new Scanner(System.in);
 		boolean trueOrFalse = true;
 
 		do {
+			new ProcessBuilder("clear", "/c", "cls").inheritIO().start().waitFor();
 			System.out.println(
 					"What would you like to do?\n1. Create Tutor\n2. Update Tutor Phone Number\n3. Delete Tutor\n4. Go Back");
 			int choice = in.nextInt();
@@ -31,7 +33,7 @@ public class TutorOperations {
 				t1.setPhoneNumber(phoneNumber);
 
 				store.createTutor(t1);
-
+				System.out.println("Tutor created Successfully.");
 				break;
 
 			case 2:
@@ -41,6 +43,7 @@ public class TutorOperations {
 				System.out.println("What is the new phone number:");
 				String newPhoneNumber = in.nextLine();
 				store.updateTutorPhoneNumber(tutorName, newPhoneNumber);
+				System.out.println("Tutor updated Successfully.");
 				break;
 
 			case 3:
@@ -48,6 +51,7 @@ public class TutorOperations {
 				in.nextLine();
 				String firedTutor = in.nextLine();
 				store.deleteTutor(firedTutor);
+				System.out.println("Tutor removed Successfully.");
 				break;
 
 			case 4:
@@ -57,7 +61,13 @@ public class TutorOperations {
 			default:
 				System.out.println("invalid answer");
 			}
-
+			try {
+				System.out.println("\n\n\n\n");
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} while (trueOrFalse);
 		in.close();
 	}

@@ -1,13 +1,15 @@
 package com.iscience.tutoring.sessions;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class IScienceClasses {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner in = new Scanner(System.in);
 		boolean trueOrFalse = true;
 		do {
+			new ProcessBuilder("clear", "/c", "cls").inheritIO().start().waitFor();
 			System.out.println(
 					"What do you want to do?\n1. Change tutor information\n2. Change Session Information\n3. Change student information\n4. Quit");
 			int choice = in.nextInt();

@@ -1,5 +1,6 @@
 package com.iscience.tutoring.sessions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class SessionOperations {
 	private TutorStore tutorStore = new TutorStore();
 	private StudentStore studentStore = new StudentStore();
 
-	public void displayChoices() {
+	public void displayChoices() throws InterruptedException, IOException {
 		Scanner in = new Scanner(System.in);
 		boolean trueOrFalse = true;
 		Tutor tutor;
@@ -26,6 +27,7 @@ public class SessionOperations {
 		Student student;
 
 		do {
+			new ProcessBuilder("clear", "/c", "cls").inheritIO().start().waitFor();
 			System.out.println(
 					"What would you like to do?\n1. Create Session\n2. Assign tutor to session\n3. Add student to session\n4. Remove student from session\n5. Delete session\n6. Go Back");
 			int choice = in.nextInt();
@@ -60,6 +62,8 @@ public class SessionOperations {
 				session.setPrice(in.nextLine());
 				
 				sessionStore.createTutoringSession(session);
+				
+				System.out.println("Session Created Successfully.");
 				break;
 
 			case 2:
@@ -74,6 +78,7 @@ public class SessionOperations {
 				session = getSession(in);
 				session.setTutor(tutor);
 				sessionStore.updateTutoringSession(session);
+				System.out.println("Session updated Successfully.");
 				break;
 
 			case 3:
@@ -88,6 +93,7 @@ public class SessionOperations {
 				session = getSession(in);
 				session.addStudent(student);
 				sessionStore.updateTutoringSession(session);
+				System.out.println("Session updated Successfully.");
 				break;
 
 			case 4:
@@ -102,6 +108,7 @@ public class SessionOperations {
 				session = getSession(in);
 				session.getStudents().remove(student);
 				sessionStore.updateTutoringSession(session);
+				System.out.println("Session updated Successfully.");
 				break;
 				
 			case 5:
@@ -110,6 +117,7 @@ public class SessionOperations {
 						session.getSubject(),
 						session.getDay(),
 						session.getTime());
+				System.out.println("Session removed Successfully.");
 				break;
 				
 			case 6:
@@ -118,7 +126,13 @@ public class SessionOperations {
 
 			default:
 				System.out.println("Please enter a valid answer?");
-
+			}
+			try {
+				System.out.println("\n\n\n\n");
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		} while (trueOrFalse);
 		in.close();
