@@ -10,9 +10,6 @@ public class Student {
 	private String parentPhoneNumber;
 	private String schoolName;
 
-	public Student() {
-	}
-
 	public Student(String student) {
 		this.studentName = student.toUpperCase();
 	}

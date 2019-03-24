@@ -12,9 +12,6 @@ public class TutoringSession {
 	private int sessionLength;
 	private String price;
 
-	public TutoringSession() {
-	}
-
 	public TutoringSession(String subject, String day, String time) {
 		this.subject = subject.toUpperCase();
 		this.day = day.toUpperCase();

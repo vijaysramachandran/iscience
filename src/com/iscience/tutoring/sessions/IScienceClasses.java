@@ -10,7 +10,7 @@ public class IScienceClasses {
 		do {
 			new ProcessBuilder("clear", "/c", "cls").inheritIO().start().waitFor();
 			System.out.println(
-					"What do you want to do?\n1. Change tutor information\n2. Change Session Information\n3. Change student information\n4. Quit");
+					"What do you want to do?\n1. Change tutor information\n2. Change Session Information\n3. Change student information\n4. Change Session Type information\n5. Quit");
 			int choice = in.nextInt();
 
 			switch (choice) {
@@ -28,13 +28,16 @@ public class IScienceClasses {
 				StudentOperations ops2 = new StudentOperations();
 				ops2.displayChoices();
 				break;
-
 			case 4:
+				SessionTypeOperations ops3 = new SessionTypeOperations();
+				ops3.displayChoices();
+				break;
+			case 5:
 				trueOrFalse = false;
 				break; // quitting
 
 			default:
-				System.out.println("Invalid answer. Please enter 1, 2, 3, or 4.");
+				System.out.println("Invalid answer. Please enter the number next to the action of your choice(Ex: enter 1 to change tutor information)");
 				break;
 			}
 		} while (trueOrFalse);

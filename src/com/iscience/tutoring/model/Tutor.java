@@ -5,9 +5,6 @@ public class Tutor {
 	private String tutorName;
 	private String phoneNumber;
 
-	public Tutor() {
-	}
-
 	public Tutor(String tutor) {
 		this.tutorName = tutor.toUpperCase();
 	}
